@@ -18,17 +18,26 @@ export default function OcorrenciaPage() {
     console.log('efetuando a criação de ocorrencia')
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+    const body = {
+      titulo: formData.get('title'),
+      tipo: formData.get('type'),
+      data: formData.get('date'),
+      hora: formData.get('time'),
+      localizacaoGeografica: [point?.lat, point?.lng],
+    }
+    console.log(JSON.stringify(body))
+    fetch('http://localhost:4444/ocorrencias', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+      })
 
-    console.log(
-      formData.get('title'),
-      formData.get('type'),
-      formData.get('time'),
-      formData.get('date'),
-      point?.lat,
-      point?.lng,
-    )
-
-    // aqui faz a requisição
     window.alert('Ocorência cadastrada com sucesso! Redirecionando...')
     router.push('/')
   }

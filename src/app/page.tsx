@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MapComponent } from '@/components/MapComponent'
 
@@ -11,6 +11,20 @@ export default function Home() {
     { lat: -6.88542652775848, lng: -38.5524494212183 },
     { lat: -6.891221004438016, lng: -38.54695614471224 },
   ])
+
+  useEffect(() => {
+    fetch('http://localhost:4444/ocorrencias')
+      .then((res) => res.json())
+      .then((res) => {
+        const pontos = res.map(function (elemento: any) {
+          return {
+            lat: elemento.localizacaoGeografica.coordinates[0],
+            lng: elemento.localizacaoGeografica.coordinates[1],
+          }
+        })
+        setPositions(pontos)
+      })
+  }, [])
 
   // aqui faz a requisição da api e salva no setPositions
   return (
