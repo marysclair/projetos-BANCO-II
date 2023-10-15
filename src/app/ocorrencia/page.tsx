@@ -11,6 +11,7 @@ export default function OcorrenciaPage() {
   const [point, setPoint] = useState<google.maps.LatLngLiteral>()
 
   function setPointMarker(pointMarker: google.maps.LatLngLiteral) {
+    console.log(pointMarker)
     setPoint(pointMarker)
   }
 
@@ -112,7 +113,7 @@ export default function OcorrenciaPage() {
           </form>
         </div>
         <div className="w-[550px]">
-          <MapComponent onClick={setPointMarker} positions={[]} />
+          <MapComponent onClick={setPointMarker} points={[]} />
         </div>
       </div>
       <div className="flex">

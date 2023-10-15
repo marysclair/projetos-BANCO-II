@@ -1,21 +1,73 @@
 'use client'
 
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
+import {
+  GoogleMap,
+  Marker,
+  useJsApiLoader,
+  InfoWindow,
+} from '@react-google-maps/api'
+import { useEffect, useState } from 'react'
+
+interface Point {
+  id: string
+  titulo: string
+  tipo: string
+  data: string
+  hora: string
+  position: google.maps.LatLngLiteral
+}
 
 interface MapComponentProps {
   onClick: (pointMarker: google.maps.LatLngLiteral) => void
-  positions: google.maps.LatLngLiteral[] | []
+  points: Point[] | []
 }
 
-export function MapComponent({ onClick, positions }: MapComponentProps) {
+export function MapComponent({ onClick, points }: MapComponentProps) {
+  const [point, setPoint] = useState<google.maps.LatLngLiteral>()
+  const [idPoint, setIdPoint] = useState<string | null>(null)
+
   function handleCreatePoint(event: google.maps.MapMouseEvent) {
     if (event) {
       onClick({
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
+        lat: event?.latLng?.lat() as number,
+        lng: event?.latLng?.lng() as number,
+      })
+      setPoint({
+        lat: event?.latLng?.lat() as number,
+        lng: event?.latLng?.lng() as number,
       })
     }
   }
+
+  function toggleVisibility(idPointMarker: string | null) {
+    if (idPoint === idPointMarker) {
+      return
+    }
+    setIdPoint(idPointMarker)
+  }
+
+  function formatDate(dateString: string) {
+    const date = new Date(dateString)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    const formattedDay = day.toString().padStart(2, '0')
+    const formattedMonth = month.toString().padStart(2, '0')
+    const formattedYear = year.toString()
+    return `${formattedDay}-${formattedMonth}-${formattedYear}`
+  }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        }
+        setPoint(pos)
+      })
+    }
+  }, [])
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -27,16 +79,39 @@ export function MapComponent({ onClick, positions }: MapComponentProps) {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '100%' }}
-          center={{ lat: -6.89031, lng: -38.5539 }}
-          zoom={15}
+          center={point}
+          zoom={17}
           onClick={(event) => {
             handleCreatePoint(event)
           }}
         >
-          {positions.length > 0 &&
-            positions.map((position: google.maps.LatLngLiteral) => {
-              return <Marker key={position.lat} position={position} />
-            })}
+          {points.length > 0 ? (
+            points.map((point: Point) => {
+              return (
+                <Marker
+                  key={point.id}
+                  position={point.position}
+                  onClick={() => toggleVisibility(point.id)}
+                >
+                  {idPoint === point.id && (
+                    <InfoWindow onCloseClick={() => toggleVisibility(null)}>
+                      <div className="p-2 w-[160px]">
+                        <h2 className="font-bold mb-1">
+                          {point.titulo.toLocaleUpperCase()}
+                        </h2>
+                        <p>Tipo: {point.tipo}</p>
+                        <p>
+                          {formatDate(point.data)} - {point.hora}
+                        </p>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </Marker>
+              )
+            })
+          ) : (
+            <Marker position={point as google.maps.LatLngLiteral} />
+          )}
         </GoogleMap>
       ) : (
         <></>
