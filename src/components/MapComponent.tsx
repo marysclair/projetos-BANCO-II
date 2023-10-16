@@ -23,7 +23,7 @@ interface MapComponentProps {
 }
 
 export function MapComponent({ onClick, points }: MapComponentProps) {
-  const [point, setPoint] = useState<google.maps.LatLngLiteral>()
+  const [point, setPoint] = useState<google.maps.LatLngLiteral | null>(null)
   const [idPoint, setIdPoint] = useState<string | null>(null)
 
   function handleCreatePoint(event: google.maps.MapMouseEvent) {
@@ -69,6 +69,10 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
     }
   }, [])
 
+  useEffect(() => {
+    console.log(point)
+  }, [point])
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyAUpu33pF3rodJFCMkwPRDriGbFAqzDrgs',
@@ -79,7 +83,7 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '100%' }}
-          center={point}
+          center={point ? { ...point } : { lat: -6.89031, lng: -38.5539 }}
           zoom={17}
           onClick={(event) => {
             handleCreatePoint(event)

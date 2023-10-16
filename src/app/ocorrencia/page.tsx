@@ -39,7 +39,7 @@ export default function OcorrenciaPage() {
         console.log(res)
       })
 
-    window.alert('Ocorência cadastrada com sucesso! Redirecionando...')
+    window.alert('Ocorrência cadastrada com sucesso! Redirecionando...')
     router.push('/')
   }
 
@@ -49,7 +49,7 @@ export default function OcorrenciaPage() {
         <div className="w-[550px]">
           <form
             onSubmit={handleCreateOccurrence}
-            className="flex flex-col py-10 px-8 gap-6 bg-indigo-950 text-neutral-50 rounded-3xl"
+            className="flex flex-col py-10 px-8 gap-6 shadow-lg bg-indigo-950 text-neutral-50 rounded-3xl"
           >
             <div className="flex items-center gap-4">
               <label htmlFor="title" className="uppercase w-[20%]">
@@ -59,7 +59,7 @@ export default function OcorrenciaPage() {
                 name="title"
                 id="title"
                 type="text"
-                className="border-none rounded-3xl px-2 py-1 w-[60%] text-indigo-950"
+                className="border-none rounded px-2 py-1 w-[60%] text-indigo-950"
                 required
               />
             </div>
@@ -71,7 +71,7 @@ export default function OcorrenciaPage() {
               <select
                 name="type"
                 id="type"
-                className="border-none rounded-3xl px-2 py-1 text-indigo-950"
+                className="border-none rounded px-2 py-1 text-indigo-950"
                 required
               >
                 <option value="Assalto">Assalto</option>
@@ -87,7 +87,7 @@ export default function OcorrenciaPage() {
                 type="date"
                 name="date"
                 id="date"
-                className="border-none rounded-3xl px-2 py-1 text-indigo-950"
+                className="border-none rounded px-2 py-1 text-indigo-950"
                 required
               />
             </div>
@@ -99,7 +99,7 @@ export default function OcorrenciaPage() {
                 type="time"
                 name="time"
                 id="time"
-                className="border-none rounded-3xl px-2 py-1 text-indigo-950"
+                className="border-none rounded px-2 py-1 text-indigo-950"
                 required
               />
             </div>
