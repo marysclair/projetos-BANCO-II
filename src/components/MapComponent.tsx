@@ -83,7 +83,7 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '100%' }}
-          center={point ? { ...point } : { lat: -6.89031, lng: -38.5539 }}
+          center={point ? { ...point } : { lat: -6.889369, lng: -38.54522 }}
           zoom={17}
           onClick={(event) => {
             handleCreatePoint(event)
@@ -114,7 +114,11 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
               )
             })
           ) : (
-            <Marker position={point as google.maps.LatLngLiteral} />
+            <Marker
+              position={
+                point ? { ...point } : { lat: -6.889369, lng: -38.54522 }
+              }
+            />
           )}
         </GoogleMap>
       ) : (
