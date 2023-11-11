@@ -1,52 +1,38 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { MapComponent } from '@/components/MapComponent'
-
-interface Point {
-  id: string
-  titulo: string
-  tipo: string
-  data: string
-  hora: string
-  position: google.maps.LatLngLiteral
-}
+import Image from 'next/image'
+import heroImage from '../../public/hero-image-lg.png'
+import funkyBg from '../../public/funky-background.png'
+import funkyBgSm from '../../public/funky-background-sm.png'
 
 export default function Home() {
-  const [positions, setPositions] = useState<Point[] | []>([])
-
-  useEffect(() => {
-    fetch('http://localhost:4444/ocorrencias')
-      .then((res) => res.json())
-      .then((res) => {
-        const pontos = res.map(function (elemento: any) {
-          return {
-            id: elemento.id,
-            titulo: elemento.titulo,
-            tipo: elemento.tipo,
-            data: elemento.data,
-            hora: elemento.hora,
-            position: {
-              lat: elemento.localizacaoGeografica.coordinates[0],
-              lng: elemento.localizacaoGeografica.coordinates[1],
-            },
-          }
-        })
-        console.log(pontos)
-        setPositions(pontos)
-      })
-  }, [])
-
   return (
-    <>
-      <MapComponent onClick={() => console.log('clicou')} points={positions} />
-      <Link
-        href="/ocorrencia/"
-        className="bg-indigo-950 text-neutral-50 mt-12 py-2 px-8 w-auto rounded-3xl hover:bg-indigo-900 ease-in-out duration-300 font-semibold"
-      >
-        Cadastrar uma nova ocorrência
-      </Link>
-    </>
+    <div className="grid grid-cols-2 gap-20 w-full text-slate-200">
+      <div className="flex flex-col h-[70vh] justify-center">
+        <h1 className="font-bold text-8xl mb-4">Todas as ocorrências</h1>
+        <p className="leading-relaxed text-lg border-b-slate-300 border-b-2 pb-4">
+          Aqui, você encontra uma plataforma para registrar suas ocorrências e
+          acompanhar análises através de gráficos inteligentes e planejados. Não
+          perca mais nenhuma oportunidade de melhorar seus resultados.
+        </p>
+      </div>
+      <div className="flex flex-col h-[70vh] justify-center items-center">
+        <Image
+          src={heroImage}
+          alt="hand with a phone"
+          className="relative z-10"
+        ></Image>
+        <Image
+          src={funkyBg}
+          alt="funky background"
+          className="absolute z-0 top-1/2 left-1/2 transform h-[80vh] w-[42vw] -translate-y-1/2"
+        ></Image>
+        <Image
+          src={funkyBgSm}
+          alt="funky background small"
+          className="absolute top-3/4 left-[60%] transform z-20 -translate-y-1/2"
+        ></Image>
+      </div>
+    </div>
   )
 }

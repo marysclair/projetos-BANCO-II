@@ -79,7 +79,7 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
   })
 
   return (
-    <div className="w-full h-[32rem]">
+    <>
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '100%' }}
@@ -124,6 +124,6 @@ export function MapComponent({ onClick, points }: MapComponentProps) {
       ) : (
         <></>
       )}
-    </div>
+    </>
   )
 }
