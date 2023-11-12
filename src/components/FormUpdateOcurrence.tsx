@@ -1,11 +1,15 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { MapComponent } from '@/components/MapComponent'
 import { useRouter } from 'next/navigation'
 
-export default function OcorrenciaPage() {
+import { MapComponent } from './MapComponent'
+import FormUpdateOcurrenceProps from '@/interfaces/FormUpdateOcurrenceProps'
+
+export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
   const router = useRouter()
+
+  const [changeLocation, setChangeLocation] = useState(false)
 
   const [point, setPoint] = useState<google.maps.LatLngLiteral>()
 
@@ -14,20 +18,20 @@ export default function OcorrenciaPage() {
     setPoint(pointMarker)
   }
 
-  async function handleCreateOccurrence(event: FormEvent<HTMLFormElement>) {
+  async function handleUpdateOccurrence(event: FormEvent<HTMLFormElement>) {
     console.log('efetuando a criação de ocorrencia')
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const body = {
-      titulo: formData.get('title'),
-      tipo: formData.get('type'),
-      data: formData.get('date'),
-      hora: formData.get('time'),
-      localizacaoGeografica: [point?.lat, point?.lng],
+      titulo: formData.get('title') ?? ocurrPoint.titulo,
+      tipo: formData.get('type') ?? ocurrPoint.tipo,
+      data: formData.get('date') ?? ocurrPoint.data,
+      hora: formData.get('time') ?? ocurrPoint.hora,
+      localizacaoGeografica: [point?.lat, point?.lng] ?? ocurrPoint.position,
     }
     console.log(JSON.stringify(body))
-    fetch('http://localhost:4444/ocorrencias', {
-      method: 'POST',
+    fetch(`http://localhost:4444/ocorrencia/${ocurrPoint.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,12 +47,14 @@ export default function OcorrenciaPage() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-28 w-full">
-      <div className="py-20">
-        <form
-          onSubmit={handleCreateOccurrence}
-          className="flex flex-col py-10 px-8 gap-6 shadow-lg bg-neutral-50 text-primary rounded-3xl"
-        >
+    <form
+      className="flex flex-col pb-10 px-8 gap-6 justify-between h-full"
+      onSubmit={handleUpdateOccurrence}
+    >
+      {changeLocation ? (
+        <MapComponent onClick={setPointMarker} />
+      ) : (
+        <>
           <div className="flex items-center gap-4">
             <label htmlFor="title" className="uppercase w-[20%]">
               Título
@@ -61,6 +67,7 @@ export default function OcorrenciaPage() {
               required
             />
           </div>
+
           <div className="flex items-center gap-4">
             <label htmlFor="" className="uppercase w-[20%]">
               Tipo
@@ -100,17 +107,37 @@ export default function OcorrenciaPage() {
               required
             />
           </div>
+        </>
+      )}
+      <div className="flex items-center gap-4">
+        {changeLocation ? (
           <button
-            type="submit"
-            className="bg-secondary mt-4 py-2 px-8 w-auto rounded-3xl hover:text-slate-100 hover:bg-primary ease-in-out duration-300 font-semibold text-center"
+            type="button"
+            onClick={() => {
+              setChangeLocation(!changeLocation)
+            }}
+            className="ml-auto font-semibold bg-terciary text-neutral-50 px-4 py-2 rounded-md hover:shadow-md"
           >
-            Cadastrar uma nova ocorrência
+            Voltar
           </button>
-        </form>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              setChangeLocation(!changeLocation)
+            }}
+            className="bg-terciary font-semibold text-neutral-50 px-4 py-2 rounded-md hover:shadow-md"
+          >
+            Alterar localização
+          </button>
+        )}
       </div>
-      <div>
-        <MapComponent onClick={setPointMarker} />
-      </div>
-    </div>
+      <button
+        type="submit"
+        className="bg-secondary py-2 px-8 w-auto rounded-3xl hover:text-slate-100 hover:bg-primary ease-in-out duration-300 font-semibold text-center"
+      >
+        Atualizar ocorrência
+      </button>
+    </form>
   )
 }

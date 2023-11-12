@@ -1,27 +1,44 @@
 'use client'
-import { Trash2 } from 'lucide-react'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css/navigation'
 import 'swiper/css'
 import 'src/app/slide.css'
-import { ButtonEdit } from '@/components/ButtonEdit'
+import { Ocurrence } from '@/components/Ocurrence'
+import { useEffect, useState } from 'react'
+import OcurrencePoint from '@/interfaces/OcurrencePoint'
 
 export default function Ocorrencias() {
+  const [ocurrPoint, setOcurrPoint] = useState<OcurrencePoint[] | []>([])
+
+  useEffect(() => {
+    fetch('http://localhost:4444/ocorrencias')
+      .then((res) => res.json())
+      .then((res) => {
+        const pontos = res.map(function (elemento: any) {
+          return {
+            id: elemento.id,
+            titulo: elemento.titulo,
+            tipo: elemento.tipo,
+            data: elemento.data,
+            hora: elemento.hora,
+            position: {
+              lat: elemento.localizacaoGeografica.coordinates[0],
+              lng: elemento.localizacaoGeografica.coordinates[1],
+            },
+          }
+        })
+        setOcurrPoint(pontos)
+      })
+  }, [])
+
   return (
-    <div className="grid grid-cols-[450px_800px]  gap-28 w-full">
+    <div className="grid grid-cols-[30%_60%] gap-28 w-full">
       <div className="text-primary border-l-neutral-50 border-l-2 pl-4">
-        <div className="bg-neutral-50 w-full rounded-xl py-4 px-6 shadow-xl">
-          <div className="flex justify-between mb-4">
-            <ButtonEdit />
-            <button className="bg-secondary p-2 rounded-2xl hover:text-neutral-50 ease-in-out duration-300">
-              <Trash2 size={16} />
-            </button>
-          </div>
-          <h2 className="font-bold mb-1">Lorem, ipsum dolor.</h2>
-          <p>Tipo: Lorem.</p>
-          <p>20/10/2023 - 08:00</p>
-        </div>
+        {ocurrPoint.map((point) => {
+          return <Ocurrence key={point.id} ocurrPoint={point} />
+        })}
       </div>
       <div className="bg-neutral-50">
         <Swiper
