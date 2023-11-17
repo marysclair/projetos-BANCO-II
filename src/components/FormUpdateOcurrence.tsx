@@ -64,7 +64,6 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               id="title"
               type="text"
               className="border-primary border-2 rounded px-2 py-1 w-[60%]"
-              required
             />
           </div>
 
@@ -76,7 +75,6 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="type"
               id="type"
               className="border-primary border-2 rounded p-2"
-              required
             >
               <option value="Assalto">Assalto</option>
               <option value="Furto">Furto</option>
@@ -92,7 +90,6 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="date"
               id="date"
               className="border-primary border-2 rounded px-2 py-1 "
-              required
             />
           </div>
           <div className="flex items-center gap-4">
@@ -104,7 +101,6 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="time"
               id="time"
               className="border-primary border-2 rounded px-2 py-1 "
-              required
             />
           </div>
         </>
