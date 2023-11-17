@@ -30,7 +30,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
       localizacaoGeografica: [point?.lat, point?.lng] ?? ocurrPoint.position,
     }
     console.log(JSON.stringify(body))
-    fetch(`http://localhost:4444/ocorrencia/${ocurrPoint.id}`, {
+    fetch(`http://localhost:4444/ocorrencias/${ocurrPoint.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

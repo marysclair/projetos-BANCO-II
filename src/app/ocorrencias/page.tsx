@@ -18,7 +18,7 @@ export default function Ocorrencias() {
       .then((res) => {
         const pontos = res.map(function (elemento: any) {
           return {
-            id: elemento.id,
+            id: elemento._id,
             titulo: elemento.titulo,
             tipo: elemento.tipo,
             data: elemento.data,
