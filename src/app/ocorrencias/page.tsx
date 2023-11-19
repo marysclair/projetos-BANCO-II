@@ -18,7 +18,7 @@ export default function Ocorrencias() {
       .then((res) => {
         const pontos = res.map(function (elemento: any) {
           return {
-            id: elemento.id,
+            id: elemento._id,
             titulo: elemento.titulo,
             tipo: elemento.tipo,
             data: elemento.data,
@@ -30,12 +30,13 @@ export default function Ocorrencias() {
           }
         })
         setOcurrPoint(pontos)
+        console.log(pontos)
       })
   }, [])
 
   return (
     <div className="grid grid-cols-[30%_60%] gap-28 w-full">
-      <div className="text-primary border-l-neutral-50 border-l-2 pl-4">
+      <div className="text-primary flex flex-col gap-4 border-l-neutral-50 border-l-2 pl-4 h-[65vh] overflow-auto pr-8 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
         {ocurrPoint.map((point) => {
           return <Ocurrence key={point.id} ocurrPoint={point} />
         })}

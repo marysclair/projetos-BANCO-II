@@ -11,7 +11,9 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
 
   const [changeLocation, setChangeLocation] = useState(false)
 
-  const [point, setPoint] = useState<google.maps.LatLngLiteral>()
+  const [point, setPoint] = useState<google.maps.LatLngLiteral>(
+    ocurrPoint.position,
+  )
 
   function setPointMarker(pointMarker: google.maps.LatLngLiteral) {
     console.log(pointMarker)
@@ -30,7 +32,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
       localizacaoGeografica: [point?.lat, point?.lng] ?? ocurrPoint.position,
     }
     console.log(JSON.stringify(body))
-    fetch(`http://localhost:4444/ocorrencia/${ocurrPoint.id}`, {
+    fetch(`http://localhost:4444/ocorrencias/${ocurrPoint.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -42,8 +44,8 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
         console.log(res)
       })
 
-    window.alert('Ocorrência cadastrada com sucesso! Redirecionando...')
-    router.push('/')
+    window.alert('Ocorrência atualizada com sucesso! Redirecionando...')
+    location.reload()
   }
 
   return (
@@ -64,6 +66,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               id="title"
               type="text"
               className="border-primary border-2 rounded px-2 py-1 w-[60%]"
+              value={ocurrPoint.titulo}
             />
           </div>
 
@@ -75,10 +78,11 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="type"
               id="type"
               className="border-primary border-2 rounded p-2"
+              value={ocurrPoint.tipo}
             >
               <option value="Assalto">Assalto</option>
               <option value="Furto">Furto</option>
-              <option value="Outro">Outro</option>
+              <option value="Outros">Outros</option>
             </select>
           </div>
           <div className="flex items-center gap-4">
@@ -90,6 +94,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="date"
               id="date"
               className="border-primary border-2 rounded px-2 py-1 "
+              value={ocurrPoint.data}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -101,6 +106,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="time"
               id="time"
               className="border-primary border-2 rounded px-2 py-1 "
+              value={ocurrPoint.hora}
             />
           </div>
         </>

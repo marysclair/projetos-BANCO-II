@@ -38,8 +38,7 @@ export default function OcorrenciaPage() {
         console.log(res)
       })
 
-    window.alert('Ocorrência cadastrada com sucesso! Redirecionando...')
-    router.push('/')
+    window.alert('Ocorrência cadastrada com sucesso!')
   }
 
   return (
@@ -73,7 +72,7 @@ export default function OcorrenciaPage() {
             >
               <option value="Assalto">Assalto</option>
               <option value="Furto">Furto</option>
-              <option value="Outro">Outro</option>
+              <option value="Outros">Outros</option>
             </select>
           </div>
           <div className="flex items-center gap-4">

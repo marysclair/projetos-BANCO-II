@@ -27,6 +27,7 @@
     "eslint": "^8.50.0",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
