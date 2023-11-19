@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 export function ButtonDelete({ ocurrPointId }: ButtonDeleteProps) {
   const router = useRouter()
   async function handleDeleteOcurrence() {
-    console.log(ocurrPointId)
     fetch(`http://localhost:4444/ocorrencias/${ocurrPointId}`, {
       method: 'DELETE',
       headers: {
