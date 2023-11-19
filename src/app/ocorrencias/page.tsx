@@ -24,8 +24,8 @@ export default function Ocorrencias() {
             data: elemento.data,
             hora: elemento.hora,
             position: {
-              lat: elemento.localizacaoGeografica.coordinates[0],
-              lng: elemento.localizacaoGeografica.coordinates[1],
+              lat: elemento.localizacaoGeografica.coordinates[1],
+              lng: elemento.localizacaoGeografica.coordinates[0],
             },
           }
         })
@@ -54,7 +54,7 @@ export default function Ocorrencias() {
               className="p-4"
               width="800"
               height="480"
-              src="https://charts.mongodb.com/charts-project-0-lrory/embed/charts?id=65400bce-ef90-4aa0-85be-57735397aac9&maxDataAge=300&theme=light&autoRefresh=true"
+              src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65593564-0673-4d07-8cbc-776ee6c757e5&maxDataAge=60&theme=light&autoRefresh=true"
             ></iframe>
           </SwiperSlide>
           <SwiperSlide>
@@ -62,7 +62,7 @@ export default function Ocorrencias() {
               className="p-4"
               width="800"
               height="480"
-              src="https://charts.mongodb.com/charts-project-0-lrory/embed/charts?id=654279e8-3fb5-40bd-813d-dc064e5ed055&maxDataAge=3600&theme=light&autoRefresh=true"
+              src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65592f14-e021-46b4-80a9-ede4bf105b70&maxDataAge=60&theme=light&autoRefresh=true"
             ></iframe>
           </SwiperSlide>
           <SwiperSlide>
@@ -70,7 +70,15 @@ export default function Ocorrencias() {
               className="p-4"
               width="800"
               height="480"
-              src="https://charts.mongodb.com/charts-project-0-lrory/embed/charts?id=654693de-e494-4b10-8e5e-df084e6635c3&maxDataAge=300&theme=light&autoRefresh=true"
+              src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=6559367e-7fe5-4dfa-8ecd-aab5fab9b7cd&maxDataAge=60&theme=light&autoRefresh=true"
+            ></iframe>
+          </SwiperSlide>
+          <SwiperSlide>
+            <iframe
+              className="p-4"
+              width="800"
+              height="480"
+              src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65592e5c-29ce-403e-8fe4-7a7153930e99&maxDataAge=60&theme=light&autoRefresh=true"
             ></iframe>
           </SwiperSlide>
         </Swiper>

@@ -9,11 +9,18 @@ export default function Home() {
   return (
     <div className="grid grid-cols-2 gap-20 w-full text-slate-200">
       <div className="flex flex-col h-[70vh] justify-center">
-        <h1 className="font-bold text-8xl mb-4">Todas as ocorrências</h1>
+        <h1 className="font-bold text-5xl mb-4 leading-tight">
+          Registre ocorrências, acompanhe o progresso e tome decisões informadas
+        </h1>
         <p className="leading-relaxed text-lg border-b-slate-300 border-b-2 pb-4">
-          Aqui, você encontra uma plataforma para registrar suas ocorrências e
-          acompanhar análises através de gráficos inteligentes e planejados. Não
-          perca mais nenhuma oportunidade de melhorar seus resultados.
+          <span className="font-bold text-secondary">
+            - tudo em um só lugar.
+          </span>{' '}
+          Nosso aplicativo simplifica o registro de ocorrências policiais e
+          oferece insights poderosos. Mantenha-se informado e seguro com uma
+          interface intuitiva que permite relatar incidentes e acompanhar seu
+          progresso em tempo real. Visualize dados precisos e relevantes para
+          uma compreensão rápida e eficaz das ocorrências em sua região.
         </p>
       </div>
       <div className="flex flex-col h-[70vh] justify-center items-center">

@@ -1,6 +1,7 @@
 import { ButtonEdit } from '../components/ButtonEdit'
 import OcurrenceProps from '@/interfaces/OcurenceProps'
 import { ButtonDelete } from './ButtonDelete'
+import { formatDate } from '@/lib/utils'
 
 export function Ocurrence({ ocurrPoint }: OcurrenceProps) {
   return (
@@ -12,7 +13,7 @@ export function Ocurrence({ ocurrPoint }: OcurrenceProps) {
       <h2 className="font-bold mb-1">{ocurrPoint.titulo}</h2>
       <p>Tipo: {ocurrPoint.tipo}</p>
       <p>
-        {ocurrPoint.data} - {ocurrPoint.hora}
+        {formatDate(ocurrPoint.data, true)} - {ocurrPoint.hora}
       </p>
     </div>
   )

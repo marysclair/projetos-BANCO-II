@@ -23,7 +23,7 @@ export default function OcorrenciaPage() {
       tipo: formData.get('type'),
       data: formData.get('date'),
       hora: formData.get('time'),
-      localizacaoGeografica: [point?.lat, point?.lng],
+      localizacaoGeografica: [point?.lng, point?.lat],
     }
     console.log(JSON.stringify(body))
     fetch('http://localhost:4444/ocorrencias', {
@@ -56,7 +56,7 @@ export default function OcorrenciaPage() {
               name="title"
               id="title"
               type="text"
-              className="border-primary border-2 rounded px-2 py-1 w-[60%]"
+              className="border-slate-300 border-[1px] rounded px-2 py-1 w-[60%]"
               required
             />
           </div>
@@ -67,7 +67,7 @@ export default function OcorrenciaPage() {
             <select
               name="type"
               id="type"
-              className="border-primary border-2 rounded p-2"
+              className="border-slate-300 border-[1px] rounded p-2"
               required
             >
               <option value="Assalto">Assalto</option>
@@ -83,7 +83,7 @@ export default function OcorrenciaPage() {
               type="date"
               name="date"
               id="date"
-              className="border-primary border-2 rounded px-2 py-1 "
+              className="border-slate-300 border-[1px] rounded px-2 py-1 "
               required
             />
           </div>
@@ -95,7 +95,7 @@ export default function OcorrenciaPage() {
               type="time"
               name="time"
               id="time"
-              className="border-primary border-2 rounded px-2 py-1 "
+              className="border-slate-300 border-[1px] rounded px-2 py-1 "
               required
             />
           </div>
@@ -108,7 +108,7 @@ export default function OcorrenciaPage() {
         </form>
       </div>
       <div>
-        <MapComponent onClick={setPointMarker} />
+        <MapComponent onClick={setPointMarker} location={null} />
       </div>
     </div>
   )

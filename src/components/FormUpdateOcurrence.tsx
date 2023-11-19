@@ -5,11 +5,16 @@ import { useRouter } from 'next/navigation'
 
 import { MapComponent } from './MapComponent'
 import FormUpdateOcurrenceProps from '@/interfaces/FormUpdateOcurrenceProps'
+import { formatDate, inverterCoordenadas } from '@/lib/utils'
 
 export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
   const router = useRouter()
 
   const [changeLocation, setChangeLocation] = useState(false)
+  const [titulo, setTitulo] = useState(ocurrPoint.titulo ?? '')
+  const [tipo, setTipo] = useState(ocurrPoint.tipo ?? '')
+  const [data, setData] = useState(formatDate(ocurrPoint.data, false) ?? '')
+  const [hora, setHora] = useState(ocurrPoint.hora ?? '')
 
   const [point, setPoint] = useState<google.maps.LatLngLiteral>(
     ocurrPoint.position,
@@ -22,6 +27,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
 
   async function handleUpdateOccurrence(event: FormEvent<HTMLFormElement>) {
     console.log('efetuando a criação de ocorrencia')
+    console.log([point?.lat, point?.lng], inverterCoordenadas(point))
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const body = {
@@ -29,7 +35,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
       tipo: formData.get('type') ?? ocurrPoint.tipo,
       data: formData.get('date') ?? ocurrPoint.data,
       hora: formData.get('time') ?? ocurrPoint.hora,
-      localizacaoGeografica: [point?.lat, point?.lng] ?? ocurrPoint.position,
+      localizacaoGeografica: [point?.lng, point?.lat],
     }
     console.log(JSON.stringify(body))
     fetch(`http://localhost:4444/ocorrencias/${ocurrPoint.id}`, {
@@ -54,7 +60,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
       onSubmit={handleUpdateOccurrence}
     >
       {changeLocation ? (
-        <MapComponent onClick={setPointMarker} />
+        <MapComponent onClick={setPointMarker} location={ocurrPoint.position} />
       ) : (
         <>
           <div className="flex items-center gap-4">
@@ -65,8 +71,11 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               name="title"
               id="title"
               type="text"
-              className="border-primary border-2 rounded px-2 py-1 w-[60%]"
-              value={ocurrPoint.titulo}
+              className="border-slate-300 border-[1px] rounded px-2 py-1 w-[60%]"
+              value={titulo}
+              onChange={(e) => {
+                setTitulo(e.target.value)
+              }}
             />
           </div>
 
@@ -77,8 +86,11 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
             <select
               name="type"
               id="type"
-              className="border-primary border-2 rounded p-2"
-              value={ocurrPoint.tipo}
+              className="border-slate-300 border-[1px] rounded p-2"
+              value={tipo}
+              onChange={(e) => {
+                setTipo(e.target.value)
+              }}
             >
               <option value="Assalto">Assalto</option>
               <option value="Furto">Furto</option>
@@ -93,8 +105,11 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               type="date"
               name="date"
               id="date"
-              className="border-primary border-2 rounded px-2 py-1 "
-              value={ocurrPoint.data}
+              className="border-slate-300 border-[1px] rounded px-2 py-1 "
+              value={data}
+              onChange={(e) => {
+                setData(e.target.value)
+              }}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -105,8 +120,11 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
               type="time"
               name="time"
               id="time"
-              className="border-primary border-2 rounded px-2 py-1 "
-              value={ocurrPoint.hora}
+              className="border-slate-300 border-[1px] rounded px-2 py-1 "
+              value={hora}
+              onChange={(e) => {
+                setHora(e.target.value)
+              }}
             />
           </div>
         </>

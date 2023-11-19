@@ -4,8 +4,8 @@ import MapComponentProps from '@/interfaces/MapComponentProps'
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 
-export function MapComponent({ onClick }: MapComponentProps) {
-  const [point, setPoint] = useState<google.maps.LatLngLiteral | null>(null)
+export function MapComponent({ onClick, location }: MapComponentProps) {
+  const [point, setPoint] = useState<google.maps.LatLngLiteral | null>(location)
 
   function handleCreatePoint(event: google.maps.MapMouseEvent) {
     if (event) {
