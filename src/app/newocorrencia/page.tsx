@@ -2,11 +2,8 @@
 
 import { FormEvent, useState } from 'react'
 import { MapComponent } from '@/components/MapComponent'
-import { useRouter } from 'next/navigation'
 
 export default function OcorrenciaPage() {
-  const router = useRouter()
-
   const [point, setPoint] = useState<google.maps.LatLngLiteral>()
 
   function setPointMarker(pointMarker: google.maps.LatLngLiteral) {

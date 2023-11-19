@@ -1,15 +1,12 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 import { MapComponent } from './MapComponent'
 import FormUpdateOcurrenceProps from '@/interfaces/FormUpdateOcurrenceProps'
 import { formatDate, inverterCoordenadas } from '@/lib/utils'
 
 export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
-  const router = useRouter()
-
   const [changeLocation, setChangeLocation] = useState(false)
   const [titulo, setTitulo] = useState(ocurrPoint.titulo ?? '')
   const [tipo, setTipo] = useState(ocurrPoint.tipo ?? '')
