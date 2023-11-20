@@ -81,6 +81,13 @@ export default function Ocorrencias() {
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65592e5c-29ce-403e-8fe4-7a7153930e99&maxDataAge=60&theme=light&autoRefresh=true"
             ></iframe>
           </SwiperSlide>
+          <SwiperSlide>
+            <iframe
+              width="800"
+              height="480"
+              src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65593847-e021-41fe-81a4-ede4bff88453&maxDataAge=60&theme=light&autoRefresh=true"
+            ></iframe>
+          </SwiperSlide>
         </Swiper>
       </div>
     </div>
