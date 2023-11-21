@@ -36,7 +36,7 @@ export default function Ocorrencias() {
 
   return (
     <div className="grid grid-cols-[30%_60%] gap-28 w-full">
-      <div className="text-primary flex flex-col gap-4 border-l-neutral-50 border-l-2 pl-4 h-[65vh] overflow-auto pr-8 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
+      <div className="text-primary flex flex-col gap-4 px-6 border-l-neutral-50 border-l-2 pl-4 h-[65vh] overflow-auto pr-8 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
         {ocurrPoint.map((point) => {
           return <Ocurrence key={point.id} ocurrPoint={point} />
         })}
@@ -51,7 +51,7 @@ export default function Ocorrencias() {
         >
           <SwiperSlide>
             <iframe
-              className="p-4"
+              className="py-4 px-6"
               width="800"
               height="480"
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65593564-0673-4d07-8cbc-776ee6c757e5&maxDataAge=60&theme=light&autoRefresh=true"
@@ -59,7 +59,7 @@ export default function Ocorrencias() {
           </SwiperSlide>
           <SwiperSlide>
             <iframe
-              className="p-4"
+              className="py-4 px-6"
               width="800"
               height="480"
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65592f14-e021-46b4-80a9-ede4bf105b70&maxDataAge=60&theme=light&autoRefresh=true"
@@ -67,7 +67,7 @@ export default function Ocorrencias() {
           </SwiperSlide>
           <SwiperSlide>
             <iframe
-              className="p-4"
+              className="py-4 px-6"
               width="800"
               height="480"
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=6559367e-7fe5-4dfa-8ecd-aab5fab9b7cd&maxDataAge=60&theme=light&autoRefresh=true"
@@ -75,7 +75,7 @@ export default function Ocorrencias() {
           </SwiperSlide>
           <SwiperSlide>
             <iframe
-              className="p-4"
+              className="py-4 px-6"
               width="800"
               height="480"
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65592e5c-29ce-403e-8fe4-7a7153930e99&maxDataAge=60&theme=light&autoRefresh=true"
@@ -83,6 +83,7 @@ export default function Ocorrencias() {
           </SwiperSlide>
           <SwiperSlide>
             <iframe
+              className="py-4 px-6"
               width="800"
               height="480"
               src="https://charts.mongodb.com/charts-project-0-okkyl/embed/charts?id=65593847-e021-41fe-81a4-ede4bff88453&maxDataAge=60&theme=light&autoRefresh=true"

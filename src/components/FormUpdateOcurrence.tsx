@@ -36,7 +36,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
     }
     console.log(JSON.stringify(body))
     fetch(`http://localhost:4444/ocorrencias/${ocurrPoint.id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
