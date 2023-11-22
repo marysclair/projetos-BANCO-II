@@ -2,12 +2,12 @@
 ## Grupo
 - [Gabriella Braga](https://github.com/gabs44)
 - [Maria Clara](https://github.com/marysclair)
-## Primeiro projeto
+## Segundo projeto
 
-### O projeto foi desenvolvido com o objetivo de criar uma aplicação para persistir e listar (ou buscar) dados de ocorrências policiais.
+### O projeto foi desenvolvido com o objetivo de criar uma aplicação para persistir, listar, atualizar e excluir dados de ocorrências policiais, utilizando MongoDB Atlas e Mongo Charts.
 
 ## Executando
-### Para executar o frontend desse projeto (este repositório), é preciso executar o seguinte comando
+#### Para executar o frontend desse projeto (este repositório), é preciso executar os seguinte comandos para baixar as dependências e executar a API em modo de desenvolvimento
 ```
 npm install
 npm run dev
