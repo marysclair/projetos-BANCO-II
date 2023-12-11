@@ -200,12 +200,19 @@ export default function Ocorrencias() {
                     Outros
                   </button>
                   <button
+                    disabled={horario.length === 0}
                     onClick={() => {
                       handleChangeFilter()
                     }}
                   >
                     Todos os tipos
                   </button>
+                </div>
+                <div className="mt-auto">
+                  Contagem:{' '}
+                  {ocurrPointFiltro.length !== ocurrPoint.length
+                    ? ocurrPointFiltro.length
+                    : ocurrPoint.length}
                 </div>
               </div>
             </div>
