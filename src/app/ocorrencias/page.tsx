@@ -52,6 +52,7 @@ export default function Ocorrencias() {
         .then((res) => res.json())
         .then((res) => {
           const pontos = res.map(function (elemento: any) {
+            console.log(elemento)
             return {
               id: elemento._id,
               titulo: elemento.titulo,
