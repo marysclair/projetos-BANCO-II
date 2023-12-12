@@ -71,6 +71,7 @@ export function MapComponent({
               return (
                 <MarkerF
                   key={position.id}
+                  title={position.titulo}
                   position={position.position}
                   onLoad={(marker) => {
                     const customIcon = (opts) =>
