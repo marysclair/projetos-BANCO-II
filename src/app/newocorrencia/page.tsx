@@ -98,6 +98,7 @@ export default function OcorrenciaPage() {
           </div>
           <button
             type="submit"
+            id="botao-enviar"
             className="bg-secondary mt-4 py-2 px-8 w-auto rounded-3xl hover:text-slate-100 hover:bg-primary ease-in-out duration-300 font-semibold text-center"
           >
             Cadastrar uma nova ocorrência
