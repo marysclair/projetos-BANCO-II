@@ -24,6 +24,7 @@ export function ButtonDelete({ ocurrPointId }: ButtonDeleteProps) {
 
   return (
     <button
+      id="botao-excluir"
       className="bg-secondary p-2 rounded-2xl hover:text-neutral-50 ease-in-out duration-300"
       onClick={handleDeleteOcurrence}
     >

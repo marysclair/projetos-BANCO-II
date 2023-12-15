@@ -139,6 +139,7 @@ export function FormUpdateOcurrence({ ocurrPoint }: FormUpdateOcurrenceProps) {
           </button>
         ) : (
           <button
+            id="botao-atualizar"
             type="button"
             onClick={() => {
               setChangeLocation(!changeLocation)

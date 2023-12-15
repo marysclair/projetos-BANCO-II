@@ -94,7 +94,10 @@ export default function Ocorrencias() {
 
   return (
     <div className="grid grid-cols-[30%_60%] gap-28 w-full">
-      <div className="text-primary flex flex-col gap-4 px-6 border-l-neutral-50 border-l-2 pl-4 h-[67vh] overflow-auto pr-8 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
+      <div
+        id="ocorrencias"
+        className="text-primary flex flex-col gap-4 px-6 border-l-neutral-50 border-l-2 pl-4 h-[67vh] overflow-auto pr-8 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100"
+      >
         {ocurrPoint.map((point) => {
           return <Ocurrence key={point.id} ocurrPoint={point} />
         })}

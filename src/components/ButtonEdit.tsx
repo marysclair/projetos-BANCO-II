@@ -22,6 +22,7 @@ export function ButtonEdit({ ocurrPoint }: ButtonEditProps) {
         <div className="fixed top-0 left-0 w-full h-full bg-slate-900/70 flex justify-center items-center z-[110]">
           <div className="bg-slate-50 rounded-md w-1/2 h-4/5 flex-col flex z-[110] text-primary">
             <button
+              id="botao-editar"
               onClick={() => {
                 setIsVisible(!isVisible)
               }}
